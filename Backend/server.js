@@ -1,13 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-const DbConnection = require("./config/Db");
+const {DbConnection} = require("./config/Db");
 const userRoutes = require("./routes/route");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const cors = require("cors");
 
 // Middleware
 app.use(express.json());
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials:true
+}))
 
 // Routes
 app.use("/api/users", userRoutes);
