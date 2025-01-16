@@ -1,6 +1,6 @@
 import {toast} from "react-hot-toast";
 import { apiConnector } from "./apiConnector";
-import { CREATE_USER, GET_ALL_USERS } from "./apiRoutes";
+import { CREATE_USER, GET_ALL_USERS, UPDATE_USER } from "./apiRoutes";
 
 
 export const getUsers = async() => {
@@ -8,7 +8,6 @@ export const getUsers = async() => {
    let result;
    try{
       const response = await apiConnector("GET", GET_ALL_USERS);
-      console.log("Get All users response ", response);
 
       if(!response?.data?.success){
         throw new Error(response.data.message);
@@ -28,7 +27,6 @@ export const addUser = async(formData) => {
     const toastId = toast.loading("Adding...");
     try{
         const response = await apiConnector("POST", CREATE_USER, formData);
-        console.log("Create user response ", response);
 
         if(!response?.data?.success){
             throw new Error(response.data.message);
@@ -41,4 +39,22 @@ export const addUser = async(formData) => {
     }finally{
         toast.dismiss(toastId);
     }
+}
+
+
+export const addHobbyToUser = async({userId, hobbies}) => {
+   const toastId = toast.loading("Loading...");
+   try{
+      const response = await apiConnector("PUT", UPDATE_USER, {userId, hobbies});
+
+      if(!response?.data?.success){
+        throw new Error(response.data.message);
+      }
+      return response.data.updatedUser;
+   }catch(err){
+    console.error("Failed to update node", err);
+    toast.error("Failed to update");
+   }finally{
+    toast.dismiss(toastId);
+   }
 }

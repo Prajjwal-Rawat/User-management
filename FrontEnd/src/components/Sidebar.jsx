@@ -28,6 +28,7 @@ const Sidebar = ({ hobbies, onAddHobby, onToggleForm }) => {
       <ul className="space-y-2">
         {hobbies.map((hobby, index) => (
           <li key={index}
+          draggable="true"
           onDragStart={(event) => handleDragStart(event, hobby)}
           className="p-2 bg-white shadow rounded"
           >

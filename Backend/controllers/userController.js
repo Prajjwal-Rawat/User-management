@@ -43,8 +43,7 @@ const getAllUsers = async (req, res) => {
   
   // Update a user
   const updateUser = async (req, res) => {
-    const { userId } = req.params;
-    const { username, age, hobbies } = req.body;
+    const { username, age, hobbies, userId } = req.body;
     try {
       const updatedUser = await User.findByIdAndUpdate(
         userId,
