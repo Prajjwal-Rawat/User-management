@@ -1,5 +1,5 @@
 
-<h1><b>User Hobby Flow Application</b></h1>
+<h1><b>User Management Flow Application</b></h1>
 <img src="FrontEnd/assets/userManagement.jpg" alt="Project Banner" /> <!-- Replace with your own banner screenshot -->
 
 This is a React-based application that visualizes users and their hobbies using ReactFlow. It allows users to interact with a flow of users and hobbies, adding new hobbies to users and deleting nodes from the system. Changes are automatically reflected in the backend database via API requests.
